@@ -1,0 +1,147 @@
+.product img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 13px;
+}
+
+.product .price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--purple);
+}
+
+.product .offer {
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: red;
+  line-height: 2;
+}
+
+.offer-price {
+  color: var(--pink);
+}
+
+.cart-btn {
+  padding: 0.5rem 0.75rem;
+  background-color: var(--purple);
+  color: var(--light);
+  margin-top: 0.5rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 19px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pagination {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.pagination p {
+  color: rgb(107, 98, 98);
+}
+
+.pagination .btn {
+  background-color: var(--dark);
+}
+
+/* Single product */
+.single-product {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--light-purple);
+  padding: 1rem;
+}
+.product-img img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.product-img {
+  width: 45%;
+}
+.product-img img:hover {
+  position: relative;
+  transform: scale(1.1);
+  z-index: 10;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+#thumbnails {
+  display: flex;
+
+  flex-wrap: wrap;
+}
+.product-img #thumbnails #thumbnail {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  object-position: top;
+  margin-right: 0.56rem;
+  margin-top: 0.56rem;
+}
+.product-details {
+  width: 48%;
+}
+
+.product-details .price {
+  color: var(--purple);
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.product-details .title {
+  font-size: 1.3rem;
+}
+
+.product-details .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--purple);
+}
+
+.product-details .btn span,
+.cart-btn span {
+  margin-left: 0.65rem;
+}
+
+.not-found-product {
+  text-align: center;
+}
+.not-found-product p {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 1rem;
+  text-align: center;
+}
+.not-found-product img {
+  width: 350px;
+  margin: 0 auto;
+}
+
+@media (max-width: 650px) {
+  .single-product {
+    flex-direction: column;
+  }
+
+  .product-img,
+  .product-details {
+    width: 100%;
+  }
+
+  .product-details {
+    margin-top: 0.75rem;
+  }
+}

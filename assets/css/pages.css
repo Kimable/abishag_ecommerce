@@ -1,0 +1,133 @@
+/* Home page */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3.5rem;
+  background-color: var(--light-pink);
+}
+
+.hero .left {
+  width: 58%;
+  margin-right: 0.65rem;
+}
+.hero .right {
+  width: 40%;
+}
+
+.hero img {
+  border-radius: 18px;
+}
+
+/* Extensions section */
+.extensions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.extensions div {
+  height: 250px;
+  border-radius: 16px;
+  margin: 0.55rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--light);
+}
+
+.extensions div p {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.extensions div:nth-child(1) {
+  width: 61%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../images/orange-back-crop.jpg);
+}
+
+.extensions div:nth-child(2) {
+  width: 35%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../images/hair-style-2.jpg);
+}
+
+.extensions div:nth-child(3) {
+  width: 35%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../images/kinky.jpg);
+}
+
+.extensions div:nth-child(4) {
+  width: 61%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../images/colorwig.webp);
+}
+
+.extensions div:nth-child(1),
+.extensions div:nth-child(2),
+.extensions div:nth-child(3),
+.extensions div:nth-child(4) {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  padding: 0.65rem;
+}
+/* End Home page */
+
+/* About page + Contact Page */
+.our-story,
+.contact {
+  margin: 2rem 0;
+}
+.our-story .container,
+.contact .container {
+  background: var(--light-purple);
+  border-radius: 16px;
+}
+.our-story-content,
+.contact-content {
+  text-align: center;
+  width: 60%;
+  margin: 0 auto;
+  padding: 1.5rem 0;
+}
+.our-story-content p,
+.our-story-content .subtitle {
+  padding-bottom: 0.85rem;
+}
+
+.our-story-content img {
+  margin-bottom: 1rem;
+  height: 300px;
+  object-fit: cover;
+}
+
+/* End About page */
+
+/* Mobile screens */
+@media (max-width: 650px) {
+  .hero {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .hero .left,
+  .hero .right {
+    width: 100%;
+    margin-top: 1rem;
+    margin-right: 0;
+  }
+
+  .our-story-content,
+  .contact-content {
+    width: 95%;
+  }
+
+  .extensions div:nth-child(1),
+  .extensions div:nth-child(2),
+  .extensions div:nth-child(3),
+  .extensions div:nth-child(4) {
+    width: 100%;
+  }
+}
