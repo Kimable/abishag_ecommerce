@@ -1,8 +1,8 @@
 .product img {
   width: 100%;
-  height: 250px;
+  height: 280px;
   object-fit: cover;
-  border-radius: 13px;
+  object-position: center;
 }
 
 .product .price {

@@ -48,17 +48,19 @@ require './partials/head.php'
       const span = document.createElement('span')
       span.innerHTML = `
       <div class='cart'>
-      <img src=${item.image} />
-      <div class='cart-content'>
+        <div class='img-container'>
+        <img src=${item.image} /></div>
+       <div class='cart-content'>
         <p>${item.name}</p>  
-        <p>KES ${item.price * item.quantity}</p>
-        <p class='qty'>(Quantity: ${item.quantity})</p>
-      </div> 
-       <span>
-       <button class='decrement-btn' onclick="updateQuantity(${item.id}, 'decrement')">-</button>
-       <button class='increment-btn' onclick="updateQuantity(${item.id}, 'increment')">+</button>
-       <button class='remove-btn' onclick="remove(${item.id})"><span class="material-symbols-outlined">delete</span></button>
+        <p class='cart-price'>KES ${item.price * item.quantity}</p>
+        <span class='action-btns'>
+          <span class='decrement-btn' onclick="updateQuantity(${item.id}, 'decrement')">-</span>
+          <span class='qty-btn'>${item.quantity}</span>
+          <span class='increment-btn' onclick="updateQuantity(${item.id}, 'increment')">+</span>
        </span>
+       </div> 
+       <span class='remove-btn' onclick="remove(${item.id})"><span class="material-symbols-outlined">delete</span></span>
+      
       </div>`;
 
       cartList.appendChild(span);

@@ -32,7 +32,7 @@ include './partials/head.php'
       <div class="input-container">
         <label for="category">Product Category</label>
         <select name="category" id="category">
-          <option value="uncategorized">Uncategorized</option>
+          <option value="uncategorized" selected>--Select Category--</option>
           <option value="hair-extensions">Hair Extensions</option>
           <option value="hair-products">Hair Care Products</option>
           <option value="wigs">Wigs & Weaves</option>
@@ -48,7 +48,7 @@ include './partials/head.php'
       <div class="input-container">
         <label for="tag">Product Tag</label>
         <select name="tag" id="tag">
-          <option value="0">No Tag</option>
+          <option value="0" selected>--Select Tag--</option>
           <option value="offer">Offer</option>
           <option value="free-delivery">Free Delivery</option>
           <option value="5-off">5% Off</option>

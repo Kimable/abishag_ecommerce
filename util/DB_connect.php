@@ -11,6 +11,6 @@ function connect()
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $conn;
   } catch (PDOException $e) {
-    return "Connection failed: " . $e->getMessage();
+    echo "Connection failed: " . $e->getMessage();
   }
 }

@@ -16,12 +16,12 @@ require './partials/head.php';
     <?php endif ?>
 
     <?php foreach ($items as $item): ?>
-      <?php $images = explode(',', $item['images']);
-      $img = $images[0] ?>
+
       <div class="col product">
+        <?php $img = $item['main_image'] ?>
 
         <a href="/product.php?slug=<?= htmlspecialchars($item['slug']); ?>">
-          <img src='<?= $img; ?>' alt='<?= htmlspecialchars($item["name"]); ?>'>
+          <img src='<?= $img ?>' alt='<?= htmlspecialchars($item["name"]); ?>'>
         </a>
         <h2><?= substr(htmlspecialchars($item['name']), 0, 20); ?>...</h2>
         <p class="price offer">Price: KES <?= htmlspecialchars($item['price']); ?></p>

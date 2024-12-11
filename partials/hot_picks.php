@@ -17,11 +17,8 @@ require './functions/GetAllProducts.php';
 
         <div class="col">
           <a href="/product.php?slug=<?= htmlspecialchars($item['slug']); ?>">
-            <?php
-            $images = explode(",", $item['images']);
-            $mainImg = $images[0];
-            ?>
-            <img src='<?= $mainImg ?>' alt='<?= htmlspecialchars($item["name"]); ?>'>
+
+            <img src='<?= $item['main_image'] ?>' alt='<?= htmlspecialchars($item["name"]); ?>'>
             <p id="text"><?= substr(htmlspecialchars($item['name']), 0, 20); ?></p>
             <p id="price">KES <?= htmlspecialchars($item['price']); ?></p>
           </a>
@@ -61,8 +58,6 @@ require './functions/GetAllProducts.php';
     object-fit: cover;
     object-position: top;
     height: 180px;
-    border-radius: 10px 10px 0 0;
-
   }
 
   .hot .col p {
