@@ -1,6 +1,6 @@
 <?php
-require './util/DB_connect.php';
-require './functions/TestInputs.php';
+require '../util/DB_connect.php';
+require '../functions/TestInputs.php';
 $productName = $price = $description = $image = $quantity = $category = $tag = $offer_price = $message = $successMsg = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

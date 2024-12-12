@@ -171,12 +171,6 @@ img {
   background-color: var(--light-purple);
   padding: 1rem;
 }
-footer {
-  background-color: var(--pink);
-  padding: 1rem;
-  text-align: center;
-  color: var(--light);
-}
 
 /* Navbar */
 header {

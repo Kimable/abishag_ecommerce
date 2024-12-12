@@ -1,7 +1,7 @@
 <?php
 $title = "Add Product";
-include './functions/AddProduct.php';
-include './partials/head.php'
+require __DIR__ . '/../functions/AddProduct.php';
+require __DIR__ . '/../partials/head.php'
 ?>
 <div class="vertical-space">
   <div class="container form">
@@ -79,4 +79,4 @@ include './partials/head.php'
     </form>
   </div>
 </div>
-<?php include './partials/footer.php' ?>
+<?php require __DIR__ . '/../partials/footer.php' ?>

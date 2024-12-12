@@ -11,7 +11,7 @@ require './partials/head.php';
 
     <?php if (count($items) === 0): ?>
       <div style="display: block;">
-        <p>No products added yet.</p>
+        <p>Sorry, products in that category have not been added yet. Please check again later.</p>
       </div>
     <?php endif ?>
 

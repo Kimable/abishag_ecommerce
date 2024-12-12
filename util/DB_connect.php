@@ -1,5 +1,5 @@
 <?php
-require './util/env.php';
+require __DIR__ . '/env.php';
 function connect()
 {
   $dbName = 'ecommerce';
