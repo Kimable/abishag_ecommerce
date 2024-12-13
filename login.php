@@ -18,6 +18,7 @@ require __DIR__ . '/partials/head.php'
       </div>
       <button type="submit" class="btn">Login</button>
     </form>
+    <small>Don't have an account? <a style="color: var(--pink);" href="/register.php">Register Here</a></small>
   </div>
 </div>
 <?php require __DIR__ . '/partials/footer.php' ?>

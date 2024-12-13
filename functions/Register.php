@@ -15,16 +15,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     return;
   }
 
-  $pdo = connect();
+  try {
+    $pdo = connect();
 
-  $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-  $verificationCode = bin2hex(random_bytes(16));
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->execute([$email]);
+    $user = $stmt->fetch();
 
-  $stmt = $pdo->prepare("INSERT INTO users (name, email, password, verification_code) VALUES (?, ?, ?, ?)");
-  $stmt->execute([$name, $email, $hashedPassword, $verificationCode]);
+    if (!$user) {
+      $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+      $verificationCode = bin2hex(random_bytes(16));
 
-  $verificationLink = "http://example.com/verify.php?code=$verificationCode";
-  //mail($email, "Verify Your Email", "Click here to verify your email: $verificationLink");
+      $stmt = $pdo->prepare("INSERT INTO users (name, email, password, verification_code) VALUES (?, ?, ?, ?)");
+      $stmt->execute([$name, $email, $hashedPassword, $verificationCode]);
 
-  $successMsg = "Registration successful! Check your email for the verification link.";
+      $verificationLink = "http://example.com/verify.php?code=$verificationCode";
+      //mail($email, "Verify Your Email", "Click here to verify your email: $verificationLink");
+
+      $successMsg = "Registration successful! Check your email for the verification link.";
+    } else {
+      $errorMsg = "This Email is already registered. Login please.";
+    }
+  } catch (\Throwable $th) {
+    $errorMsg = "Error: $th->message";
+  }
 }
