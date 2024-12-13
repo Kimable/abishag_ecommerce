@@ -16,11 +16,20 @@ require './functions/GetAllProducts.php';
       <?php foreach ($items as $item): ?>
 
         <div class="col">
-          <a href="/product.php?slug=<?= htmlspecialchars($item['slug']); ?>">
-
+          <a class="img-container" href="/product.php?slug=<?= htmlspecialchars($item['slug']); ?>">
+            <?php if (htmlspecialchars($item['offer_price']) != 0): ?>
+              <div class="offer-tag" style="font-size: 10px;">OFFER!!!</div>
+            <?php endif ?>
             <img src='<?= $item['main_image'] ?>' alt='<?= htmlspecialchars($item["name"]); ?>'>
             <p id="text"><?= substr(htmlspecialchars($item['name']), 0, 20); ?></p>
-            <p id="price">KES <?= htmlspecialchars($item['price']); ?></p>
+
+            <!-- Offer Price Check -->
+            <?php if (htmlspecialchars($item['offer_price']) == 0) : ?>
+              <p id="price">KES <?= htmlspecialchars($item['price']); ?></p>
+            <?php else : ?>
+              <p id="price">KES <?= htmlspecialchars($item['offer_price']); ?></p>
+            <?php endif ?>
+
           </a>
         </div>
       <?php endforeach; ?>

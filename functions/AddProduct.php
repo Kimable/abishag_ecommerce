@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
 
     // Handle image uploads
-    $uploadDirectory = './' . 'uploads/';
+    $uploadDirectory = '/' . 'uploads/';
     foreach ($_FILES['product_images']['tmp_name'] as $key => $tmpName) {
       $originalName = $_FILES['product_images']['name'][$key];
       $fileType = mime_content_type($tmpName); // Get MIME type
@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $filePath = $uploadDirectory . $newFileName;
 
         // Move the file to the upload directory
-        if (move_uploaded_file($tmpName, $filePath)) {
+        if (move_uploaded_file($tmpName, __DIR__ . '/..' . $filePath)) {
           // Save image path in the database
           $stmt = $conn->prepare("INSERT INTO product_images (product_id, image_path) VALUES (:product_id, :image_path)");
           $stmt->execute([

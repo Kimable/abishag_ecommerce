@@ -1,25 +1,52 @@
 .product img {
   width: 100%;
-  height: 280px;
+  height: auto;
   object-fit: cover;
-  object-position: center;
 }
 
-.product .price {
-  font-size: 1.1rem;
+.img-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.product .price,
+.product .offer-price {
+  font-size: 1rem;
   font-weight: 700;
+  margin: 0.75rem 0;
   color: var(--purple);
 }
 
-.product .offer {
-  text-decoration: line-through;
-  text-decoration-thickness: 1.5px;
-  text-decoration-color: red;
-  line-height: 2;
+.product .offer-price {
+  color: var(--pink);
 }
 
-.offer-price {
-  color: var(--pink);
+.product .was-price,
+.single-product .was-price {
+  text-decoration: line-through;
+  text-decoration-thickness: 1.2px;
+  text-decoration-color: red;
+  color: var(--dark);
+  font-size: 0.7rem;
+}
+
+.product .offer {
+  text-decoration-color: red;
+}
+
+.offer-tag {
+  position: absolute;
+  top: 10px;
+  left: -10px;
+  background-color: red;
+  color: white;
+  padding: 5px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+  z-index: 10;
 }
 
 .cart-btn {
@@ -60,27 +87,20 @@
 }
 .product-img img {
   width: 100%;
-  height: 400px;
+  height: auto;
   object-fit: cover;
   object-position: top;
   border-radius: 10px;
-  overflow: hidden;
+  /* overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
+  cursor: pointer; */
 }
 .product-img {
   width: 45%;
 }
-.product-img img:hover {
-  position: relative;
-  transform: scale(1.1);
-  z-index: 10;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-}
 
 #thumbnails {
   display: flex;
-
   flex-wrap: wrap;
 }
 .product-img #thumbnails #thumbnail {
@@ -90,7 +110,19 @@
   object-position: top;
   margin-right: 0.56rem;
   margin-top: 0.56rem;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
+
+.product-img #thumbnail:hover {
+  position: relative;
+  transform: scale(1.1);
+  z-index: 10;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
 .product-details {
   width: 48%;
 }

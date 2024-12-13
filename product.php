@@ -31,7 +31,6 @@ require './partials/head.php'
 ?>
 
 <div class="container vertical-space">
-
   <?php if ($errorMsg == '' && $product != null) { ?>
 
     <?php $mainImg = $images[0]['image_path'];
@@ -42,7 +41,10 @@ require './partials/head.php'
     }
     ?>
     <div class="single-product">
-      <div class="product-img">
+      <div class="product-img img-container">
+        <?php if (htmlspecialchars($product['offer_price']) != 0): ?>
+          <div class="offer-tag">OFFER!!!</div>
+        <?php endif ?>
         <img src="<?= $mainImg ?>" alt="<?= htmlspecialchars($product['name']); ?>" onclick="openModal(this)">
         <!-- Thumbnail imgs -->
         <div id="thumbnails">
@@ -54,9 +56,18 @@ require './partials/head.php'
       <div class="product-details">
         <h1 style="margin-bottom: 0.75rem;"><?= htmlspecialchars($product['name']); ?></h1>
         <p class="description"><strong>Description:</strong> <?= substr(htmlspecialchars($product['description']), 0, 200); ?></p>
-        <p class="price" style="margin-top: 1rem;">KES <?= htmlspecialchars($product['price']); ?> </p>
 
-        <button class="cart-btn" type="submit" onclick="addToCart('<?= $product['id'] ?>', '<?= $product['name'] ?>',  '<?= $mainImg ?>',  '<?= $product['price'] ?>')">Add to Cart
+
+        <?php if (htmlspecialchars($product['offer_price']) == 0) : ?>
+
+          <p class="price">KES <?= htmlspecialchars($product['price']); ?></p>
+
+        <?php else : ?>
+
+          <p class="price">KES <?= htmlspecialchars($product['offer_price']); ?> <small class="was-price">KES <?= htmlspecialchars($product['price']); ?> </small></p>
+        <?php endif ?>
+
+        <button class="cart-btn" type="submit" onclick="addToCart('<?= $product['id'] ?>', '<?= $product['name'] ?>',  '<?= $mainImg ?>',  '<?php echo $product['offer_price'] != 0 ? $product['offer_price'] : $product['price'] ?>')">Add to Cart
           <span class="material-symbols-outlined">
             local_mall
           </span>
@@ -73,13 +84,14 @@ require './partials/head.php'
         <p>This product does not exist in our database.</p>
         <a class="btn" href="/products.php">Find another product</a>
       </div>
-
-
       <img src="./assets/images/Not_found.png" alt="Product Not found">
 
     <?php } ?>
     </div>
 </div>
+<!-- Recommendations -->
+<?php require __DIR__ . "/partials/recommended.php" ?>
+
 <!-- Modal -->
 <div id="imageModal" class="modal" onclick="closeModal()">
   <span class="close">

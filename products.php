@@ -20,15 +20,27 @@ require './partials/head.php';
       <div class="col product">
         <?php $img = $item['main_image'] ?>
 
-        <a href="/product.php?slug=<?= htmlspecialchars($item['slug']); ?>">
+
+        <a class="img-container" href="/product.php?slug=<?= htmlspecialchars($item['slug']); ?>">
+          <?php if (htmlspecialchars($item['offer_price']) != 0): ?>
+            <div class="offer-tag">OFFER!!!</div>
+          <?php endif ?>
           <img src='<?= $img ?>' alt='<?= htmlspecialchars($item["name"]); ?>'>
         </a>
-        <h2><?= substr(htmlspecialchars($item['name']), 0, 20); ?>...</h2>
-        <p class="price offer">Price: KES <?= htmlspecialchars($item['price']); ?></p>
+        <h3><?= substr(htmlspecialchars($item['name']), 0, 50); ?>...</h3>
 
+        <!-- Offer Price Check -->
+        <?php if (htmlspecialchars($item['offer_price']) == 0) : ?>
+
+          <p class="price">KES <?= htmlspecialchars($item['price']); ?></p>
+
+        <?php else : ?>
+
+          <p class="offer-price">KES <?= htmlspecialchars($item['offer_price']); ?> <small class="was-price">KES <?= htmlspecialchars($item['price']); ?> </small></p>
+        <?php endif ?>
         <!-- Add to cart -->
 
-        <button class="cart-btn" type="submit" onclick="addToCart('<?= $item['id'] ?>', '<?= $item['name'] ?>',  '<?= $img ?>',  '<?= $item['price'] ?>')">Add to Cart
+        <button class="cart-btn" type="submit" onclick="addToCart('<?= $item['id'] ?>', '<?= $item['name'] ?>',  '<?= $img ?>',  '<?php echo $item['offer_price'] != 0 ? $item['offer_price'] : $item['price'] ?>')">Add to Cart
           <span class="material-symbols-outlined">
             local_mall
           </span>
@@ -69,6 +81,7 @@ require './partials/head.php';
       item.quantity++;
     } else {
       // If item doesn't exist, add a new item
+
       cart.push({
         id: id,
         name: name,
