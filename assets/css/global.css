@@ -1,4 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
+@font-face {
+  font-family: "Nunito";
+  src: url("/assets/css/Nunito/static/Nunito-Bold.ttf");
+}
 
 *,
 *::before,
@@ -13,6 +16,7 @@
   --pink: #cb3f79;
   --yellow: #f1dd09;
   --dark: #191919;
+  --dark-grey: #34495e;
   --light: #f5f5f6;
   --light-pink: #ffe3ef;
   --light-purple: #fdddf9;
@@ -22,7 +26,7 @@ body,
 button,
 input,
 textarea {
-  font-family: "Lexend", sans-serif;
+  font-family: "Nunito";
   font-optical-sizing: auto;
   font-style: normal;
 }
@@ -142,6 +146,10 @@ img {
   padding: 0.42rem;
   text-align: center;
   font-size: 14px;
+}
+
+.danger {
+  color: red;
 }
 
 /* End Error messages */

@@ -62,7 +62,7 @@
     </div>
     <div class="info">
       <h3>Information</h3>
-      <a href="#">My Account</a>
+      <a href="/login.php">My Account</a>
       <a href="/order-tracking.php">Order Tracking</a>
       <a href="#">Payments</a>
       <a href="#">Offers</a>

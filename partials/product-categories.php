@@ -158,7 +158,7 @@
 
   @media (max-width:650px) {
     .product-categories .column-container .col {
-      width: 45%;
+      width: 43%;
     }
 
     .product-categories img {

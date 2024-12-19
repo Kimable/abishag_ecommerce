@@ -5,9 +5,11 @@ require __DIR__ . '/partials/head.php'
 ?>
 <div class="vertical-space">
   <div class="container form">
-    <h1 style="margin-bottom: 1.2rem;">Login to Continue</h1>
     <?php echo $errorMsg != "" ? "<p class='error'>  $errorMsg </p>" : ""; ?>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+
+    <h1 style="margin-bottom: 1.2rem;">Login to Continue</h1>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+      <input type="hidden" name="redirect" value="<?php echo htmlspecialchars($redirect); ?>">
       <div class="input-container">
         <label for="email">Email</label>
         <input type="email" name="email" id="email" value="<?php echo $email ?>" required>

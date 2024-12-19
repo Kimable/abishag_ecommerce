@@ -26,7 +26,7 @@ try {
         COALESCE(
             (SELECT i.image_path FROM product_images AS i WHERE i.product_id = p.id AND i.main = 1 LIMIT 1),
             (SELECT i.image_path FROM product_images AS i WHERE i.product_id = p.id LIMIT 1)
-        ) AS image_url FROM products AS p WHERE category = :category AND slug != :slug LIMIT 5"
+        ) AS image_url FROM products AS p WHERE category = :category AND slug != :slug LIMIT 4"
   );
 
   $stmt->bindParam(':category', $category, PDO::PARAM_STR);
@@ -60,11 +60,20 @@ try {
       <div class="recommendations">
         <?php foreach ($recommendedProducts as $product): ?>
           <div class="product-card">
-            <a href="/product.php?slug=<?php echo htmlspecialchars($product['slug']); ?>">
+            <a class="img-container" href="/product.php?slug=<?php echo htmlspecialchars($product['slug']); ?>&prod_id=<?= htmlspecialchars($product['id']); ?>">
+              <?php if (htmlspecialchars($product['offer_price']) != 0): ?>
+                <div class="offer-tag" style="font-size: 10px;">OFFER!!!</div>
+              <?php endif ?>
               <img src="<?php echo htmlspecialchars($product['image_url']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
             </a>
             <small><?php echo htmlspecialchars($product['name']); ?></small>
-            <p style="margin-top: 0.75rem; color: var(--purple); font-weight:700">Price: $<?php echo htmlspecialchars($product['price']); ?></p>
+            <!-- Offer Price Check -->
+            <?php if (htmlspecialchars($product['offer_price']) == 0) : ?>
+              <p style="margin-top: 0.75rem; color: var(--purple); font-weight:700">KES <?= htmlspecialchars($product['price']); ?></p>
+            <?php else : ?>
+              <p style="margin-top: 0.75rem; color: var(--purple); font-weight:700">KES <?= htmlspecialchars($product['offer_price']); ?></p>
+            <?php endif ?>
+
           </div>
         <?php endforeach; ?>
       </div>

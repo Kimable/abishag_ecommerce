@@ -12,7 +12,12 @@ require './partials/head.php';
     <?php if (count($items) === 0): ?>
       <div style="display: block;">
         <p>Sorry, products in that category have not been added yet. Please check again later.</p>
+        <a href="/products.php" class="btn">Explore Other Products</a>
+
+        <!-- Recommendations -->
+        <?php require __DIR__ . "/partials/recommended.php" ?>
       </div>
+
     <?php endif ?>
 
     <?php foreach ($items as $item): ?>
@@ -21,7 +26,7 @@ require './partials/head.php';
         <?php $img = $item['main_image'] ?>
 
 
-        <a class="img-container" href="/product.php?slug=<?= htmlspecialchars($item['slug']); ?>">
+        <a class="img-container" href="/product.php?slug=<?= htmlspecialchars($item['slug']); ?>&prod_id=<?= htmlspecialchars($item['id']); ?>">
           <?php if (htmlspecialchars($item['offer_price']) != 0): ?>
             <div class="offer-tag">OFFER!!!</div>
           <?php endif ?>
@@ -51,17 +56,19 @@ require './partials/head.php';
     <?php endforeach; ?>
   </div>
 
-  <!-- Pagination Links -->
-  <div class="pagination">
-    <?php if ($page > 1): ?>
-      <a class="btn" href="/products.php?page=<?= $page - 1 ?>">Previous Page</a>
-    <?php endif; ?>
+  <!-- Pagination -->
+  <?php if ($total_pages > 0) { ?>
+    <div class="pagination">
+      <?php if ($page > 1): ?>
+        <a class="btn" href="/products.php?page=<?= $page - 1 ?>">Previous Page</a>
+      <?php endif; ?>
 
-    <?php if ($page < $total_pages): ?>
-      <a class="btn" href="/products.php?page=<?= $page + 1 ?>">More Products</a>
-    <?php endif; ?>
-    <p>Page <?= $page ?> of <?= $total_pages ?></p>
-  </div>
+      <?php if ($page < $total_pages): ?>
+        <a class="btn" href="/products.php?page=<?= $page + 1 ?>">More Products</a>
+      <?php endif; ?>
+      <p>Page <?= $page ?> of <?= $total_pages ?></p>
+    </div>
+  <?php } ?>
 
 
 </div>

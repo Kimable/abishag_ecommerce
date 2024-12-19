@@ -19,6 +19,9 @@ include './partials/head.php';
 
 <!-- Hero Ends -->
 
+<!-- Hot picks section -->
+<?php require './partials/hot_picks.php' ?>
+
 <!-- Product categories -->
 <div class="container vertical-space">
 
@@ -48,9 +51,6 @@ include './partials/head.php';
     </div>
   </div>
 </div>
-
-<!-- Hot picks section -->
-<?php require './partials/hot_picks.php' ?>
 
 
 <!-- Subscriptions -->

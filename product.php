@@ -1,30 +1,30 @@
 <?php
 $title = "Product";
-require './functions/GetAllProducts.php';
-// Get the item ID from the URL query string
+require './util/DB_connect.php';
+// Get the item slug or id from the URL query string
 $errorMsg = '';
 $product = null;
 if (isset($_GET['slug'])) {
   $slug = $_GET['slug'];
+  $prod_id = $_GET['prod_id'];
   // Fetch the item details from the database
   $conn = connect();
-  $sql = "SELECT * FROM products WHERE slug = :slug";
+  $sql = "SELECT * FROM products WHERE slug = :slug OR id = :prod_id";
   $stmt = $conn->prepare($sql);
-  $stmt->execute([':slug' => $slug]);
+  $stmt->execute([':slug' => $slug, ':prod_id' => $prod_id]);
   $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  $productId = $product['id'];
-
+  // var_dump($product);
   if (!$product) {
     $errorMsg = "Product not found!";
-    die();
+  } else {
+    $productId = $product['id'];
+    // Fetch the associated images
+    $stmt = $conn->prepare("SELECT * FROM product_images WHERE product_id = :product_id");
+    $stmt->execute([':product_id' => $productId]);
+    $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 }
-
-// Fetch the associated images
-$stmt = $conn->prepare("SELECT * FROM product_images WHERE product_id = :product_id");
-$stmt->execute([':product_id' => $productId]);
-$images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 require './partials/head.php'

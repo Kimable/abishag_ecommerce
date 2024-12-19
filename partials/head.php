@@ -17,27 +17,36 @@ $title;
 <body>
 
   <header>
-
     <a href="/" class="logo"><img src="../assets/images/abishag-logo.png" alt="Logo"></a>
     <!-- Navbar for large screens -->
     <nav class="desktop-nav">
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/about.php">About Us</a></li>
-        <li><a href="/products.php">Products</a></li>
+        <li class="cart-link" id="dropdown">
+          <a href="#">Products</a>
+          <span class="material-symbols-outlined">keyboard_arrow_down</span>
+          <!-- Dropdown content -->
+          <div class="dropdown-menu">
+            <a href="/products.php?category=wigs">Wigs & Weaves</a>
+            <a href="/products.php?category=hair-care-styling">Hair care & Styling</a>
+            <a href="/products.php?category=hair-extensions">Premium extensions</a>
+            <a href="/products.php?category=hair-products">Hair Products</a>
+            <a href="/products.php?category=hair-styling-tools">Hair Styling Tools</a>
+            <a href="/products.php?category=hair-accessories">Hair Essentials & Accessories</a>
+            <a href="/products.php?category=hair-installation-services">Installation Services</a>
+            <a href="/products.php?category=hair-maintenance">Ongoing Maintenance Support</a>
+          </div>
+        </li>
         <li><a href="/contact.php">Contact Us</a></li>
         <li class="cart-link">
           <a href="/cart.php">Cart</a>
-          <span class="material-symbols-outlined">
-            local_mall
-          </span>
+          <span class="material-symbols-outlined">local_mall</span>
         </li>
       </ul>
     </nav>
     <div class="menu-btn" onclick="toggleMenu()">
-      <span class="material-symbols-outlined">
-        menu
-      </span>
+      <span class="material-symbols-outlined">menu</span>
     </div>
   </header>
 
@@ -46,7 +55,21 @@ $title;
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/about.php">About</a></li>
-      <li><a href="/products.php">Products</a></li>
+      <li class="cart-link" id="dropdown">
+        <a href="#">Products</a>
+        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+        <!-- Dropdown content -->
+        <div class="dropdown-menu">
+          <a href="/products.php?category=wigs">Wigs & Weaves</a>
+          <a href="/products.php?category=hair-care-styling">Hair care & Styling</a>
+          <a href="/products.php?category=hair-extensions">Premium extensions</a>
+          <a href="/products.php?category=hair-products">Hair Products</a>
+          <a href="/products.php?category=hair-styling-tools">Hair Styling Tools</a>
+          <a href="/products.php?category=hair-accessories">Hair Essentials & Accessories</a>
+          <a href="/products.php?category=hair-installation-services">Installation Services</a>
+          <a href="/products.php?category=hair-maintenance">Ongoing Maintenance Support</a>
+        </div>
+      </li>
       <li><a href="/contact.php">Contact</a></li>
       <li class="cart-link">
         <a href="/cart.php">Cart</a>
@@ -58,3 +81,61 @@ $title;
   </nav>
 
   <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+  <!-- CSS -->
+  <style>
+    .cart-link {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: var(--light-pink);
+      color: black;
+      border-radius: 13px;
+      min-width: 180px;
+      z-index: 1000;
+    }
+
+    .cart-link .dropdown-menu a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      font-size: 16px;
+      color: var(--pink);
+    }
+
+    /* Show dropdown on hover */
+    .cart-link:hover .dropdown-menu {
+      display: block;
+    }
+
+    /* Show dropdown on click using a class */
+    .cart-link.active .dropdown-menu {
+      display: block;
+    }
+
+    @media (max-width:768px) {
+      .dropdown-menu {
+        left: 10%;
+      }
+    }
+  </style>
+
+  <!-- JavaScript -->
+  <script>
+    const dropdown = document.getElementById('dropdown');
+
+    dropdown.addEventListener('click', (event) => {
+      event.stopPropagation();
+      dropdown.classList.toggle('active');
+    });
+
+    document.addEventListener('click', () => {
+      dropdown.classList.remove('active');
+    });
+  </script>

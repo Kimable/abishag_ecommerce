@@ -1,5 +1,5 @@
 <?php
-require './util/DB_connect.php';
+require __DIR__ . '/../util/DB_connect.php';
 
 // Pagination logic
 $limit = 10; // Number of items per page
@@ -10,6 +10,7 @@ $offset = ($page - 1) * $limit;
 $conn = connect();
 
 // Prepare query criteria
+$loading = true;
 $criteria = [];
 $params = [];
 
@@ -35,16 +36,17 @@ if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
 }
 
 // Build the WHERE clause
-$whereClause = !empty($criteria) ? 'WHERE ' . implode(' AND ', $criteria) : '';
+$whereClause = !empty($criteria) ? 'WHERE' . implode(' AND ', $criteria) : '';
 
 // SQL query to get products with main or first image
-$sql = "
-    SELECT 
+$sql = "SELECT 
         p.id, 
         p.name, 
         p.price, 
         p.offer_price, 
         p.slug,
+        p.archive,
+        p.out_of_stock,
         COALESCE(
             (SELECT i.image_path FROM product_images AS i WHERE i.product_id = p.id AND i.main = 1 LIMIT 1),
             (SELECT i.image_path FROM product_images AS i WHERE i.product_id = p.id LIMIT 1)
@@ -77,3 +79,4 @@ foreach ($params as $key => $value) {
 $countStmt->execute();
 $total = $countStmt->fetchColumn();
 $total_pages = ceil($total / $limit);
+$loading = false;
