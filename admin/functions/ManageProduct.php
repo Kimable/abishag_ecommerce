@@ -139,4 +139,101 @@ function archiveProduct()
   }
 }
 function markOutOfStock() {}
-function updateProductImages() {}
+function updateMainImage()
+{
+  if (isset($_POST['mainImg'])) {
+    $imgId = $_POST['id'];
+    $productId = $_POST['product_id'];
+    $conn = connect();
+
+    // Set all images to not main
+    $stmt = $conn->prepare("UPDATE product_images SET main = 0 WHERE product_id =?");
+    $stmt->execute([$productId]);
+
+    try {
+      $stmt = $conn->prepare("UPDATE product_images SET main = 1 WHERE id =?");
+      if ($stmt->execute([$imgId])) {
+        $successMsg = "Main Image Updated Successfully";
+        header("Location: /admin/product.php?slug=&prod_id=$productId&status=ok&message=$successMsg");
+      } else {
+        $errorMsg = "Something Went wrong. Try again";
+        header("Location: /admin/product.php?slug=''&prod_id=$productId&status=err&message=$errorMsg");
+      }
+    } catch (Exception $e) {
+      $message =  $e->getMessage();
+      header("Location: /admin/product.php?slug=''&prod_id=$productId&status=err&message=$message");
+    }
+  }
+}
+
+function deleteProductImage()
+{
+  if (isset($_POST['deleteImg'])) {
+    $imgId = $_POST['id'];
+    $productId = $_POST['product_id'];
+    $conn = connect();
+    //Can't delete main image
+    $stmt = $conn->prepare("SELECT * FROM product_images WHERE id =? AND main = 1");
+    $stmt->execute([$imgId]);
+    $mainImage = $stmt->fetch();
+    if ($mainImage) {
+      $errorMsg = "Can't delete main image. Set another image as main first";
+      header("Location: /admin/product.php?slug=''&prod_id=$productId&status=err&message=$errorMsg");
+      return;
+    }
+    try {
+      $stmt = $conn->prepare("DELETE FROM product_images WHERE id =?");
+      if ($stmt->execute([$imgId])) {
+        $successMsg = "Image Deleted Successfully";
+        header("Location: /admin/product.php?slug=&prod_id=$productId&status=ok&message=$successMsg");
+      } else {
+        $errorMsg = "Something Went wrong. Try again";
+        header("Location: /admin/product.php?slug=''&prod_id=$productId&status=err&message=$errorMsg");
+      }
+    } catch (Exception $e) {
+      $message =  $e->getMessage();
+      header("Location: /admin/product.php?slug=''&prod_id=$productId&status=err&message=$message");
+    }
+  }
+}
+
+function addImages()
+{
+  if (isset($_FILES['images'])) {
+    $productId = $_POST['product_id'];
+    $conn = connect();
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+    $uploadDirectory = '/' . 'uploads/';
+    foreach ($_FILES['images']['tmp_name'] as $key => $tmpName) {
+      $originalName = $_FILES['images']['name'][$key];
+      $fileType = mime_content_type($tmpName); // Get MIME type
+      $fileSize = $_FILES['images']['size'][$key];
+
+      // Check if the file is an image
+      if (in_array($fileType, $allowedTypes)) {
+        // Rename the file
+        $extension = pathinfo($originalName, PATHINFO_EXTENSION); // Extract file extension
+        $newFileName = uniqid('img_', true) . '.' . $extension;   // Unique file name
+        $filePath = $uploadDirectory . $newFileName;
+
+        // Move the file to the upload directory
+        if (move_uploaded_file($tmpName, __DIR__ . '/../..' . $filePath)) {
+          // Save image path and main flag in the database
+          $stmt = $conn->prepare("INSERT INTO product_images (product_id, image_path) VALUES (:product_id, :image_path)");
+          $stmt->execute([
+            ':product_id' => $productId,
+            ':image_path' => $filePath,
+          ]);
+        } else {
+          $message = "Failed to upload file: $originalName<br>";
+          header("Location: /admin/product.php?slug=&prod_id=$productId&status=err&message=$message");
+        }
+      } else {
+        $message = "Invalid file type: $originalName (only JPEG, PNG, WEBP, and GIF allowed).";
+        header("Location: /admin/product.php?slug=&prod_id=$productId&status=err&message=$message");
+      }
+    }
+    $successMsg = "Images added successfully";
+    header("Location: /admin/product.php?slug=&prod_id=$productId&status=ok&message=$successMsg");
+  }
+}

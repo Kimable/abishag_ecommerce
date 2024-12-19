@@ -1,0 +1,155 @@
+.manage-single-product #images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0.5rem 0;
+}
+
+.manage-single-product .product-detail .details-form {
+  box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.manage-single-product #images #thumbnail {
+  width: 80px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.manage-single-product #images .img-cont div {
+  display: none;
+  gap: 4px;
+}
+
+.manage-single-product #images .img-cont:hover div {
+  display: flex;
+}
+
+.manage-single-product h3 {
+  margin: 1rem 0;
+  text-decoration: underline;
+  color: var(--purple);
+}
+
+.manage-single-product .product-detail p {
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.manage-single-product .product-detail input,
+.manage-single-product .product-detail textarea {
+  color: var(--purple);
+  font-weight: 700;
+  padding: 0.5rem 0;
+  border: none;
+  outline: none;
+}
+
+.manage-single-product .product-detail input:focus-visible,
+.manage-single-product .product-detail textarea:focus-visible {
+  padding: 0.5rem;
+  border: 1.5px solid var(--purple);
+  border-radius: 7px;
+}
+
+.manage-single-product .input-container label {
+  margin: 0;
+}
+
+.danger-zone div {
+  display: flex;
+  gap: 10px;
+}
+
+.delete-btn,
+.archive-btn,
+.remove-btn,
+.main-btn {
+  background-color: red;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  color: var(--light);
+  font-size: 1rem;
+  border-radius: 18px;
+}
+
+.archive-btn {
+  background-color: var(--dark);
+}
+
+.main-btn {
+  background-color: var(--pink);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  padding: 0.4rem;
+}
+
+.remove-btn {
+  display: flex;
+  align-items: center;
+  padding: 0.2rem;
+  background-color: gray;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  /* Semi-transparent background */
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(255, 255, 255, 0.1);
+}
+
+.modal .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.modal .close:hover {
+  color: #ccc;
+}
+
+/* For file Upload */
+.file-upload {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: var(--purple);
+  color: var(--light);
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+}

@@ -12,7 +12,7 @@ require  './includes/admin_head.php';
       <?php foreach ($items as $product): ?>
         <?php if ($product['archive'] == null) : ?>
           <div class="product-card">
-            <a class="img-container" href="/admin/product.php?slug=<?php echo htmlspecialchars($product['slug']); ?>&prod_id=<?= htmlspecialchars($product['id']); ?>">
+            <a class="img-container" href="/admin/product.php?&status=ok&message=&slug=<?php echo htmlspecialchars($product['slug']); ?>&prod_id=<?= htmlspecialchars($product['id']); ?>">
               <?php if (htmlspecialchars($product['offer_price']) != 0): ?>
                 <div class="offer-tag" style="font-size: 10px;">OFFER!!!</div>
               <?php endif ?>
