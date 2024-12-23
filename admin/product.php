@@ -96,41 +96,64 @@ require  './includes/admin_head.php';
       <!-- Product Details -->
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="details-form">
         <h3>Product Details</h3>
+        <input type="hidden" name="id" value="<?= htmlspecialchars($product['id']) ?>">
         <div class="input-container">
           <label>Product Name:</label>
           <input type="text" name='productName' id="productName" value="<?= $product['name'] ?>" class="highlight">
         </div>
 
         <div class="input-container">
-          <label>Product Price:</label>
-          <input type="text" name='productName' id="productName" value="<?= $product['price'] ?>" class="highlight">
+          <label for="price">Product Price:</label>
+          <input type="text" name='price' id="price" value="<?= $product['price'] ?>" class="highlight">
         </div>
 
         <div class="input-container">
-          <label>Product Quantity:</label>
-          <input type="text" name='productName' id="productName" value="<?= $product['quantity'] ?>" class="highlight">
+          <label for="quantity">Product Quantity:</label>
+          <input type="text" name='quantity' id="quantity" value="<?= $product['quantity'] ?>" class="highlight">
         </div>
 
         <div class="input-container">
           <label>Offer Price:</label>
-          <input type="text" name='productName' id="productName" value="<?= $product['offer_price'] ?>" class="highlight">
+          <input type="text" name='offer_price' id="offer_price" value="<?= $product['offer_price'] ?>" class="highlight">
         </div>
 
         <div class="input-container">
-          <label>Product Category:</label>
-          <input type="text" name='productName' id="productName" value="<?= $product['category'] ?>" class="highlight">
+          <label for="category">Product Category</label>
+          <select name="category" id="category">
+            <option value="<?= htmlspecialchars($product['category']) ?>" selected><?= htmlspecialchars($product['category']) ?></option>
+            <option value="hair-extensions">Hair Extensions</option>
+            <option value="hair-products">Hair Care Products</option>
+            <option value="wigs">Wigs & Weaves</option>
+            <option value="hair-styling-tools">Hair Styling Tools</option>
+            <option value="hair-accessories">Hair Essentials and Accessories</option>
+            <option value="hair-care-styling">Hair care & Styling</option>
+            <option value="hair-installation-services">Hair Installation Services</option>
+            <option value="hair-maintenance">Ongoing Maintenance Support</option>
+          </select>
         </div>
 
         <div class="input-container">
-          <label>Product Tag:</label>
-          <input type="text" name='productName' id="productName" value="<?= $product['tag'] ?>" class="highlight">
+          <label for="tag">Product Tag</label>
+          <select name="tag" id="tag">
+            <option value="<?= htmlspecialchars($product['tag']) ?>" selected><?= htmlspecialchars($product['tag']) ?></option>
+            <option value="offer">Offer</option>
+            <option value="free-delivery">Free Delivery</option>
+            <option value="5-off">5% Off</option>
+            <option value="10-off">10% Off</option>
+            <option value="15-off">15% Off</option>
+            <option value="20-off">20% Off</option>
+            <option value="25-off">25% Off</option>
+            <option value="30-off">30% Off</option>
+            <option value="40-off">40% Off</option>
+            <option value="50-off">50% Off</option>
+          </select>
         </div>
 
         <div class="input-container">
           <label>Product Description:</label>
           <textarea class="highlight" name="description" id="description" rows="6" cols="30"><?= $product['description'] ?></textarea>
         </div>
-        <button class="btn" type="submit">Save Changes</button>
+        <button class="btn" type="submit" name="update">Save Changes</button>
       </form>
 
       <!-- Danger -->

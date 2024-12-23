@@ -101,7 +101,53 @@ function addProduct()
   $conn = null;
   return ['message' => $message, 'status' => $status, 'productName' => $productName, 'price' => $price, 'offer_price' => $offer_price, 'quantity' => $quantity, 'description' => $description];
 }
-function updateProduct() {}
+function updateProduct()
+{
+  $productName = $price = $offer_price = $quantity = $message = $description = '';
+  if (isset($_POST['update'])) {
+    $productName = test_input($_POST['productName']);
+    $price = test_input($_POST['price']);
+    $offer_price = test_input($_POST['offer_price']);
+    $quantity = test_input($_POST['quantity']);
+    $description = test_input($_POST['description']);
+    $category = test_input($_POST['category']);
+    $tag = test_input($_POST['tag']);
+    $productId = test_input($_POST['id']);
+
+    // Connect to DB
+    $conn = connect();
+
+    // Generate slug based on product name
+    $slug = generateSlug($productName);
+
+    // Check if product exists
+    $prod = $conn->prepare("SELECT * FROM products WHERE id =?");
+    $prod->execute([$productId]);
+    $product = $prod->fetch();
+
+    if ($product) {
+      $stmt = $conn->prepare("UPDATE products SET name = :name, description = :description, price = :price, quantity = :quantity, offer_price = :offer_price, slug = :slug, category = :category, tag = :tag WHERE id = :id");
+
+      $stmt->execute([
+        ':name' => $productName,
+        ':description' => $description,
+        ':price' => $price,
+        ':quantity' => $quantity,
+        ':offer_price' => $offer_price,
+        ':slug' => $slug,
+        ':category' => $category,
+        ':tag' => $tag,
+        ':id' => $productId
+      ]);
+      $successMsg = "Product updated successfully";
+      header("Location: /admin/product.php?slug=$slug&prod_id=$productId&status=ok&message=$successMsg");
+      return;
+    } else {
+      $message = "Product not found";
+      header("Location: /admin/product.php?slug=$slug&prod_id=$productId&status=err&message=$message");
+    }
+  }
+}
 function deleteProduct()
 {
   if (isset($_POST['delete'])) {

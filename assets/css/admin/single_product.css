@@ -26,6 +26,8 @@
   display: flex;
 }
 
+/* Product Info */
+
 .manage-single-product h3 {
   margin: 1rem 0;
   text-decoration: underline;
@@ -38,7 +40,8 @@
 }
 
 .manage-single-product .product-detail input,
-.manage-single-product .product-detail textarea {
+.manage-single-product .product-detail textarea,
+.manage-single-product .product-detail select {
   color: var(--purple);
   font-weight: 700;
   padding: 0.5rem 0;
@@ -47,10 +50,16 @@
 }
 
 .manage-single-product .product-detail input:focus-visible,
-.manage-single-product .product-detail textarea:focus-visible {
+.manage-single-product .product-detail textarea:focus-visible,
+.manage-single-product .product-detail select:focus-visible {
   padding: 0.5rem;
   border: 1.5px solid var(--purple);
   border-radius: 7px;
+}
+
+.manage-single-product select {
+  width: 200px;
+  background-color: #fff;
 }
 
 .manage-single-product .input-container label {
