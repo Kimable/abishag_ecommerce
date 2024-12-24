@@ -1,11 +1,11 @@
 @font-face {
   font-family: "Nunito";
-  src: url("/assets/css/Nunito/static/Nunito-Bold.ttf");
+  src: url("/assets/fonts/Nunito/static/Nunito-Bold.ttf");
 }
 
 @font-face {
-  font-family: "Lato";
-  src: url("/assets/css/Lato/Lato-Bold.ttf");
+  font-family: "Montserrat";
+  src: url("/assets/Montserrat-VariableFont_wght.ttf");
 }
 
 *,
@@ -31,7 +31,7 @@ body,
 button,
 input,
 textarea {
-  font-family: "Nunito";
+  font-family: "Nunito", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }
@@ -39,7 +39,7 @@ textarea {
 h1,
 h2,
 h3 {
-  font-family: "Lato";
+  font-family: "Montserrat", sans-serif;
   font-weight: 900;
 }
 

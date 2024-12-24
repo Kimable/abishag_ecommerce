@@ -36,14 +36,14 @@ if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
 }
 
 // Build the WHERE clause
-$whereClause = !empty($criteria) ? 'WHERE' . implode(' AND ', $criteria) : '';
+$whereClause = !empty($criteria) ? 'WHERE ' . implode(' AND ', $criteria) : '';
 
 // SQL query to get products with main or first image
 $sql = "SELECT 
         p.id, 
         p.name, 
         p.price, 
-        p.offer_price, 
+        p.offer_price,  
         p.slug,
         p.archive,
         p.out_of_stock,

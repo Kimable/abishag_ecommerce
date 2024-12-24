@@ -5,7 +5,12 @@ require './functions/GetAllProducts.php';
 require './partials/head.php';
 ?>
 <div class="container vertical-space">
-  <h1>Products</h1>
+  <?php if (isset($_GET['category'])) { ?>
+    <h1>Products in <span style="color: var(--purple);"><?= ucfirst(str_replace('-', " ", htmlspecialchars($_GET['category']))); ?></span></h1>
+  <?php } else { ?>
+    <h1>All Products</h1>
+  <?php } ?>
+
 
   <div class="column-container">
 
@@ -24,8 +29,6 @@ require './partials/head.php';
 
       <div class="col product">
         <?php $img = $item['main_image'] ?>
-
-
         <a class="img-container" href="/product.php?slug=<?= htmlspecialchars($item['slug']); ?>&prod_id=<?= htmlspecialchars($item['id']); ?>">
           <?php if (htmlspecialchars($item['offer_price']) != 0): ?>
             <div class="offer-tag">OFFER!!!</div>

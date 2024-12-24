@@ -10,7 +10,7 @@ require './partials/head.php'
 
   <div id="cart-list"></div>
   <p class="total-price" id="total-price"></p>
-  <button class="btn" id="pay" onclick="saveOrder()">Pay</button>
+  <button class="btn" id="pay" onclick="saveOrder()">Place Order</button>
 
   <p><a style="text-align: center; color:var(--purple); font-size:1.2rem" href="products.php">Continue Shopping</a></p>
 </div>
