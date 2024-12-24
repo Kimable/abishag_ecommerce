@@ -59,6 +59,8 @@
 
 .cart-price {
   color: var(--purple);
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
 .increment-btn {
