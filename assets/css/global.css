@@ -61,10 +61,7 @@ button:focus {
 .container {
   width: 85%;
   margin: 0 auto;
-}
-
-.vertical-space {
-  padding: 1.5rem 0;
+  padding: 2rem 0;
 }
 
 .title {

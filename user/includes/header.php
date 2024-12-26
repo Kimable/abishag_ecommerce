@@ -1,5 +1,12 @@
 <?php
 $title;
+require __DIR__ . '/../../functions/Auth.php';
+checkAuthentication();
+
+if ($_SESSION['role'] == 'admin') {
+  header("Location: /admin/");
+  exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -21,8 +28,8 @@ $title;
     <!-- Navbar for large screens -->
     <nav class="desktop-nav">
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about.php">About Us</a></li>
+        <li><a href="/user">My Account</a></li>
+        <li><a href="/about.php"></a></li>
         <li class="cart-link" id="dropdown">
           <a href="#">Products</a>
           <span class="material-symbols-outlined">keyboard_arrow_down</span>
@@ -53,8 +60,7 @@ $title;
   <nav id="navbar" class="navbar mobile-nav">
     <div class="close-btn" onclick="toggleMenu()">&times;</div>
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/about.php">About</a></li>
+      <li><a href="/user">My Account</a></li>
       <li class="cart-link" id="dropdown">
         <a href="#">Products</a>
         <span class="material-symbols-outlined">keyboard_arrow_down</span>
