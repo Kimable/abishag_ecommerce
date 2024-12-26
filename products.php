@@ -40,11 +40,11 @@ require './partials/head.php';
         <!-- Offer Price Check -->
         <?php if (htmlspecialchars($item['offer_price']) == 0) : ?>
 
-          <p class="price">KES <?= htmlspecialchars($item['price']); ?></p>
+          <p class="price">KES <?= (int) htmlspecialchars($item['price']); ?></p>
 
         <?php else : ?>
 
-          <p class="offer-price">KES <?= htmlspecialchars($item['offer_price']); ?> <small class="was-price">KES <?= htmlspecialchars($item['price']); ?> </small></p>
+          <p class="offer-price">KES <?= (int) htmlspecialchars($item['offer_price']); ?> <small class="was-price">KES <?= (int) htmlspecialchars($item['price']); ?> </small></p>
         <?php endif ?>
         <!-- Add to cart -->
 

@@ -104,7 +104,7 @@ require  './includes/admin_head.php';
 
         <div class="input-container">
           <label for="price">Product Price:</label>
-          <input type="text" name='price' id="price" value="<?= $product['price'] ?>" class="highlight">
+          <input type="text" name='price' id="price" value="<?= (int) $product['price'] ?>" class="highlight">
         </div>
 
         <div class="input-container">
@@ -114,7 +114,7 @@ require  './includes/admin_head.php';
 
         <div class="input-container">
           <label>Offer Price:</label>
-          <input type="text" name='offer_price' id="offer_price" value="<?= $product['offer_price'] ?>" class="highlight">
+          <input type="text" name='offer_price' id="offer_price" value="<?= (int) $product['offer_price'] ?>" class="highlight">
         </div>
 
         <div class="input-container">

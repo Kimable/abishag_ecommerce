@@ -50,7 +50,7 @@ $title;
     </div>
   </header>
 
-  <nav id="navbar" class="navbar">
+  <nav id="navbar" class="navbar mobile-nav">
     <div class="close-btn" onclick="toggleMenu()">&times;</div>
     <ul>
       <li><a href="/">Home</a></li>
@@ -84,6 +84,12 @@ $title;
 
   <!-- CSS -->
   <style>
+    header {
+      position: sticky;
+      z-index: 10000;
+      top: 0;
+    }
+
     .cart-link {
       position: relative;
       cursor: pointer;

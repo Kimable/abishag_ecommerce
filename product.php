@@ -60,11 +60,11 @@ require './partials/head.php'
 
         <?php if (htmlspecialchars($product['offer_price']) == 0) : ?>
 
-          <p class="price">KES <?= htmlspecialchars($product['price']); ?></p>
+          <p class="price">KES <?= (int) htmlspecialchars($product['price']); ?></p>
 
         <?php else : ?>
 
-          <p class="price">KES <?= htmlspecialchars($product['offer_price']); ?> <small class="was-price">KES <?= htmlspecialchars($product['price']); ?> </small></p>
+          <p class="price">KES <?= (int) htmlspecialchars($product['offer_price']); ?> <small class="was-price">KES <?= (int) htmlspecialchars($product['price']); ?> </small></p>
         <?php endif ?>
 
         <button class="cart-btn" type="submit" onclick="addToCart('<?= $product['id'] ?>', '<?= $product['name'] ?>',  '<?= $mainImg ?>',  '<?php echo $product['offer_price'] != 0 ? $product['offer_price'] : $product['price'] ?>')">Add to Cart

@@ -27,8 +27,8 @@
   text-decoration: line-through;
   text-decoration-thickness: 1.2px;
   text-decoration-color: red;
-  color: var(--dark);
-  font-size: 0.7rem;
+  color: rgb(147, 147, 147);
+  font-size: 0.8rem;
 }
 
 .product .offer {

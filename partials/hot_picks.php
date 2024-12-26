@@ -25,9 +25,9 @@ require './functions/GetAllProducts.php';
 
             <!-- Offer Price Check -->
             <?php if (htmlspecialchars($item['offer_price']) == 0) : ?>
-              <p id="price">KES <?= htmlspecialchars($item['price']); ?></p>
+              <p id="price">KES <?= (int) htmlspecialchars($item['price']); ?></p>
             <?php else : ?>
-              <p id="price">KES <?= htmlspecialchars($item['offer_price']); ?></p>
+              <p id="price">KES <?= (int) htmlspecialchars($item['offer_price']); ?></p>
             <?php endif ?>
 
           </a>
