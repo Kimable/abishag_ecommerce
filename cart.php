@@ -1,5 +1,5 @@
 <?php
-session_start(); // Start the session to manage cart
+session_start();
 $title = 'Cart';
 
 require './partials/head.php'
@@ -10,8 +10,11 @@ require './partials/head.php'
 
   <div id="cart-list"></div>
   <p class="total-price" id="total-price"></p>
-  <button class="btn" id="pay" onclick="saveOrder()">Place Order</button>
-
+  <?php if (!isset($_SESSION['user_id'])) { ?>
+    <a href="/login.php" class="btn">Login to place order</a>
+  <?php } else { ?>
+    <button class="btn" id="pay" onclick="saveOrder('<?= $_SESSION['user_id'] ?>')">Place Order</button>
+  <?php } ?>
   <p><a style="text-align: center; color:var(--purple); font-size:1.2rem" href="products.php">Continue Shopping</a></p>
 </div>
 
@@ -23,6 +26,8 @@ require './partials/head.php'
   const totalPriceElem = document.getElementById('total-price');
   const payBtn = document.getElementById('pay')
 
+  let totalPrice = 0;
+
   console.log(cart)
 
 
@@ -30,15 +35,13 @@ require './partials/head.php'
   function renderCart() {
     cartList.innerHTML = ''; // Clear previous list
 
-    let totalPrice = 0;
-
     if (cart.length === 0) {
       cartList.innerHTML = `
-    <div class='empty-cart'>
+      <div class='empty-cart'>
        <p>Your Cart is Empty. Start Shopping.</p>
        <img src="./assets/images/empty_cart.png"/>
-    </div>
-    `
+      </div>
+      `
       totalPriceElem.style.display = 'none'
       payBtn.style.display = 'none'
       return
@@ -106,7 +109,7 @@ require './partials/head.php'
   renderCart();
 
   // Send cart content to backend
-  function saveOrder() {
+  function saveOrder(user_id) {
     console.log(cart)
     if (cart.length !== 0) {
       fetch('/api/orders.php', {
@@ -114,14 +117,41 @@ require './partials/head.php'
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(cart)
+          body: JSON.stringify({
+            user_id,
+            status: 'pending',
+            totalAmt: totalPrice,
+            deliveryAddress: "Not provided",
+            cart
+          })
         })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
+        .then(response => {
+          if (response.status !== 201) {
+            const errorMessage = "An error occurred. Please try again."
+            alert(errorMessage);
+            return errorMessage;
+          }
+          return response.json()
+        })
+        .then(data => {
+          console.log(data)
+          if (data.message === "Cart is empty") {
+            alert("The Cart is empty")
+          } else {
+            alert("Order placed successfully")
+            localStorage.removeItem('cart');
+            window.location.href = '/order.php?order_id=' + data.orderId;
+          }
+        })
+        .catch(error => {
+          const errorMessage = "An error occurred. Please try again. " + error
+          alert(errorMessage);
+          return errorMessage;
+        });
     } else {
-      const message = "The Cart is empty"
-      return message
+      const errorMessage = "The Cart is empty"
+      alert(errorMessage);
+      return errorMessage;
     }
 
   }

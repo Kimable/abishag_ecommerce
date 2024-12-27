@@ -115,7 +115,7 @@ img {
 /* Form styles */
 .form {
   width: 40%;
-  margin: 0 auto;
+  margin: 2.5rem auto;
   background-color: var(--light-purple);
   border-radius: 12px;
   padding: 1.2rem;
