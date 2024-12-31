@@ -50,6 +50,8 @@ $stmt->bindParam(':status', $new_order['status']);
 $stmt->bindParam(':total_amount', $new_order['totalAmt']);
 $stmt->bindParam(':delivery_address', $new_order['deliveryAddress']);
 
+$orderId = null;
+
 if ($stmt->execute()) {
   $orderId = $conn->lastInsertId();
   $cart = $new_order['cart'];
@@ -62,15 +64,7 @@ if ($stmt->execute()) {
     $stmt->bindParam(':product_id', $item['id']);
     $stmt->bindParam(':quantity', $item['quantity']);
     $stmt->bindParam(':price', $item['price']);
-    if ($stmt->execute()) {
-      // Return a success response
-      http_response_code(201); // Created
-      echo json_encode(["message" => "Cart items saved successfully", 'orderId' => $orderId]);
-    } else {
-      http_response_code(500); // Internal Server Error
-      echo json_encode(["message" => "Failed to save order"]);
-      exit;
-    }
+    $stmt->execute();
   }
 } else {
   http_response_code(500); // Internal Server Error
@@ -82,3 +76,7 @@ if ($stmt->execute()) {
 
 // Close the database connection
 $conn = null;
+
+// Return a success response
+http_response_code(201); // Created
+echo json_encode(["message" => "Cart items saved successfully", 'orderId' => $orderId]);

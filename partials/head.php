@@ -86,7 +86,7 @@ $title;
   <style>
     header {
       position: sticky;
-      z-index: 10000;
+      z-index: 100;
       top: 0;
     }
 

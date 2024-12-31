@@ -8,6 +8,4 @@ require './includes/header.php';
 </div>
 
 
-<?php
-require __DIR__ . '/../partials/footer.php'
-?>
+<?php require './includes/footer.php' ?>

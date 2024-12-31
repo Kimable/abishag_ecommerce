@@ -26,13 +26,14 @@ require './partials/head.php'
   const totalPriceElem = document.getElementById('total-price');
   const payBtn = document.getElementById('pay')
 
-  let totalPrice = 0;
+
 
   console.log(cart)
 
 
   // Function to render the cart items
   function renderCart() {
+    let totalPrice = 0;
     cartList.innerHTML = ''; // Clear previous list
 
     if (cart.length === 0) {
@@ -120,7 +121,7 @@ require './partials/head.php'
           body: JSON.stringify({
             user_id,
             status: 'pending',
-            totalAmt: totalPrice,
+            totalAmt: cart.reduce((acc, item) => acc + item.price * item.quantity, 0),
             deliveryAddress: "Not provided",
             cart
           })
@@ -129,7 +130,6 @@ require './partials/head.php'
           if (response.status !== 201) {
             const errorMessage = "An error occurred. Please try again."
             alert(errorMessage);
-            return errorMessage;
           }
           return response.json()
         })
@@ -140,7 +140,7 @@ require './partials/head.php'
           } else {
             alert("Order placed successfully")
             localStorage.removeItem('cart');
-            window.location.href = '/order.php?order_id=' + data.orderId;
+            window.location.href = '/user/order.php?order_id=' + data.orderId;
           }
         })
         .catch(error => {
