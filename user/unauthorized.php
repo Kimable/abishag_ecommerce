@@ -1,7 +1,7 @@
 <?php
 $title = "Unauthorized";
 
-require './partials/head.php';
+require './includes/header.php';
 ?>
 
 
@@ -14,4 +14,4 @@ require './partials/head.php';
   </div>
 </div>
 
-<?php require './partials/footer.php'; ?>
+<?php require './includes/footer.php'; ?>

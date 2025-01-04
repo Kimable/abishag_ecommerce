@@ -1,16 +1,19 @@
 <?php
 $title = 'Orders';
-// get all ordsers from the DB
+
+require __DIR__ . '/includes/header.php';
+
 require __DIR__ . '/../util/DB_connect.php';
 $conn = connect();
 
-$getAllOrders = "SELECT * FROM orders";
+$getAllOrders = "SELECT * FROM orders WHERE user_id = :user_id";
+$userId = $_SESSION['user_id'];
 
 $stmt = $conn->prepare($getAllOrders);
+$stmt->bindParam(':user_id', $userId);
 $stmt->execute();
 $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-require __DIR__ . '/includes/header.php';
+$conn = null;
 ?>
 
 <main class="container orders">
@@ -27,7 +30,7 @@ require __DIR__ . '/includes/header.php';
     <tbody>
       <?php foreach ($orders as $order) : ?>
         <tr>
-          <td>ABI_ORD_<?php echo $order['id'] ?></td>
+          <td>#ORD_<?php echo $order['id'] ?></td>
           <td><?php echo $order['status'] ?></td>
           <td><?php echo $order['total_amount'] ?></td>
           <td><a href="order.php?order_id=<?php echo $order['id'] ?>">View Order</a></td>

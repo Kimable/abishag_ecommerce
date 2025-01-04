@@ -50,6 +50,8 @@ if ($_SESSION['role'] == 'admin') {
           <a href="/cart.php">Cart</a>
           <span class="material-symbols-outlined">local_mall</span>
         </li>
+
+        <li><a href="/user/logout.php">Logout</a></li>
       </ul>
     </nav>
     <div class="menu-btn" onclick="toggleMenu()">
@@ -83,6 +85,7 @@ if ($_SESSION['role'] == 'admin') {
           local_mall
         </span>
       </li>
+      <li><a href="/user/logout.php">Logout</a></li>
     </ul>
   </nav>
 

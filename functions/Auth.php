@@ -17,7 +17,7 @@ function checkAuthentication()
 function isAdmin()
 {
   if ($_SESSION['role'] != 'admin') {
-    header("Location: /unauthorized.php");
+    header("Location: /user/unauthorized.php");
     exit();
   }
 }
