@@ -57,8 +57,8 @@
       <h3>Support</h3>
       <a href="/contact.php">Contact Us</a>
       <a href="/about.php">About Us</a>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Return Policy</a>
+      <a href="/privacy-policy.php">Privacy Policy</a>
+      <a href="/return-policy.php">Return Policy</a>
     </div>
     <div class="info">
       <h3>Information</h3>
